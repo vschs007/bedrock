@@ -48,6 +48,19 @@ branches:
       - ie7
   run-smoke-tests:
     smoke_tests: true
+  demo__pr4684:
+    smoke_tests: true
+    regions:
+      - usw
+    apps:
+      - pr4684
+    integration_tests:
+      - headless
+      - firefox
+      - chrome
+      - ie
+      - ie6
+      - ie7
 
 regions:
   usw:
