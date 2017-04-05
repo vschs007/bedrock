@@ -1,0 +1,143 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_title_prefix %}{{ _('Firefox Features') }}{% endblock %}
+{% block page_title %}{% endblock %}
+{% block page_desc %}{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}{% endblock %}
+
+{% block page_css %}{% endblock %}
+
+{% block content %}
+{% include 'firefox/hub/_sub-nav.html' %}
+<main role="main">
+  {% block features_header %}
+    <header class="header-intro">
+      <div class="content">
+        <div class="intro-content">
+          {% block features_header_content %}{% endblock %}
+        </div>
+        <div class="intro-download">
+          {{ download_firefox(dom_id='features-header-download', button_color='button-hollow') }}
+        </div>
+        {{ high_res_img('firefox/features/browser-screenshot.jpg', {'class': 'hero-image', 'alt': _('Firefox Web Browser screenshot'), 'width': '741', 'height': '649'}) }}
+
+      </div> {#--/.content--#}
+    </header> {#--/.header-intro--#}
+  {% endblock %}
+
+  {% block features_list %}{% endblock %}
+
+  {% block news %}
+    {# Blog feed content is currently shown to English locales only. #}
+    {% if LANG.startswith('en') and articles %}
+    <section class="news">
+      <div class="content">
+        <h2 class="section-title"><span>{{ _('News from around the Web') }}</span></h2>
+        <ul class="blog-feed">
+          {% for article in articles %}
+            <li>
+              <article class="entry">
+                <a class="entry-block" rel="bookmark" href="{{ article.link }}">
+                  {% set thumbnail = article.get_featured_image_url(size='medium') %}
+                  {% if thumbnail %}
+                    <img src="{{ thumbnail }}" alt="">
+                  {% else %}
+                    <img src="{{ static('img/firefox/features/fpo-thumbnail.jpg') }}" alt="">
+                  {% endif %}
+                  <h3 class="entry-title">{{ article.blog_title }}</h3>
+                </a>
+                <div class="entry-summary">
+                  <p>{{ article.htmlify() }}</p>
+                </div>
+                <p class="entry-cta">
+                  <a href="{{ article.link }}" class="cta-link">{{ article.blog_name }}</a>
+                </p>
+              </article>
+            </li>
+          {% endfor %}
+        </ul>
+
+      </div> {#--/.content--#}
+    </section> {#--/.news--#}
+    {% endif %}
+  {% endblock %}
+
+  {% block values %}
+    <section class="values">
+      <div class="content">
+
+        <ul class="card-list">
+          <li class="card image-card">
+            <img src="{{ static('img/firefox/hub/privacy.jpg') }}" class="card-image" width="500">
+            <p class="card-label"><strong>{{ _('Private') }}</strong></p>
+            <div class="card-content">
+              <h2 class="card-title">{{ _('More Privacy') }}</h2>
+              <p>{{ _('Let your freak flag fly…or keep it safely tucked away. Firefox’s powerful privacy tools give you control over your data, so that you can browse, bank, and binge-watch without a care.') }}</p>
+              <p class="card-cta"><a href="{{ url('firefox.features.private-browsing') }}" class="cta-link">{{ _('See how Firefox protects your privacy') }}</a></p>
+            </div>
+          </li>
+          <li class="card">
+            <p class="card-label"><strong>{{ _('Modern') }}</strong></p>
+            <div class="card-content">
+              <h2 class="card-title">{{ _('More Speed') }}</h2>
+              <p>{{ _('Bring it, Internet! Firefox has spent the last year beefing up our performance, and pushing the web further with new, exclusive features. So go ahead and launch a big project or binge a live panda stream — without missing a beat.') }}</p>
+              <p class="card-cta"><a href="{{ url('firefox.features.fast') }}" class="cta-link">{{ _('Check out our browser muscles') }}</a></p>
+            </div>
+          </li>
+          <li class="card">
+            <p class="card-label"><strong>{{ _('Independent') }}</strong></p>
+            <div class="card-content">
+              <h2 class="card-title">{{ _('More Freedom') }}</h2>
+              <p>{{ _('Following the pack isn’t really our style; we’d rather lead. Firefox is an independent browser fueled by a non-profit, Mozilla. So when you choose Firefox, you’re helping build a healthy, unrestricted Internet that helps everyone.') }}</p>
+              <p class="card-cta"><a href="{{ url('firefox.features.independent') }}" class="cta-link">{{ _('See how it benefits you') }}</a></p>
+            </div>
+          </li>
+        </ul>
+
+      </div> {#--/.content--#}
+    </section> {#--/.values--#}
+  {% endblock %}
+
+  {% block related_content %}
+  <aside class="outro">
+    <div class="content">
+
+      <section class="outro-item outro-item-download">
+        <div class="outro-item-detail">
+          <h2>{{ _('Get with the fox') }}</h2>
+          <p class="tagline">{{ _('Faster than ever, more secure &amp; always independent.') }}</p>
+          {{ download_firefox(dom_id='outro-download-firefox', button_color='button-hollow') }}
+        </div>
+      </section>
+
+      <section class="outro-item outro-item-newsletter">
+        <div class="outro-item-detail">
+          <h2>{{ _('Hungry for more?') }}</h2>
+          <p class="tagline">{{ _('Get the latest &amp; greatest delivered straight to your inbox.') }}</p>
+          {{ email_newsletter_form(include_title=False, spinner_color='#000', button_class='button-hollow button-light') }}
+        </div>
+      </section>
+
+    </div> {#--/.content--#}
+  </aside> {#--/.outro--#}
+  {% endblock %}
+
+</main>
+{% endblock %}
+
+{% block site_footer %}
+  {% with footer_class='dark' %}
+    {% if LANG.startswith('en-') %}
+      {% include 'includes/site-footer-new.html' %}
+    {% else %}
+      {% include 'includes/site-footer.html' %}
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox-features-hub' %}
+{% endblock %}

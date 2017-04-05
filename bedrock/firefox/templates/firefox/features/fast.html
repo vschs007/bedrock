@@ -1,0 +1,48 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/base.html" %}
+
+{% block page_title %} — {{ _('Fast') }}{% endblock %}
+{% block page_desc %}{{ _('We’ve been working out. Firefox is now faster and leaner than ever.') }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-features-hub-detail' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-fast{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('We’ve been working out. Firefox is now faster and leaner than ever.') }}</span></h1>
+{% endblock %}
+
+{% block features_list %}
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <div class="features-list-image"></div>
+        <h3>{{ _('Faster together / Bang for your bytes') }}</h3>
+        <p>{{ _('No one likes memory hogs! Firefox is a lean, mean (actually we’re pretty nice) browsing machine that won’t take away from the performance of your other programs. We run even faster, without slowing you down.') }}</p>
+        <a class="cta-link" href="{{ url('firefox.features') }}">{{ _('Learn more') }}</a>
+      </li>
+      <li class="features-list-item">
+        <div class="features-list-image"></div>
+        <h3>{{ _('All the tabs, none of the lags') }}</h3>
+        <p>{{ _('Multi-tasking with multiple tabs just got easier. Firefox is now a multi-process browser, which means that your tabs stay snappy and active even when you navigate away - with up to 86% less hang time.') }}</p>
+        <a class="cta-link" href="{{ url('firefox.features') }}">{{ _('Learn more') }}</a>
+      </li>
+      <li class="features-list-item">
+        <div class="features-list-image"></div>
+        <h3>{{ _('Game on / Firefox FTW!') }}</h3>
+        <p>{{ _('Up-level your gaming without sacrificing performance or speed. Firefox is on a mission to reduce lags, speed up ping times, and optimize overall game-play through faster, leaner browsing. So rack up those XPs with Firefox!') }}</p>
+        <a class="cta-link" href="{{ url('firefox.features') }}">{{ _('Learn more') }}</a>
+      </li>
+    </ul>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}

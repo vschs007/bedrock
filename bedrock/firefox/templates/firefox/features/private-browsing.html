@@ -1,0 +1,50 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/base.html" %}
+
+{% block page_title %} — {{ _('Private Browsing') }}{% endblock %}
+{% block page_desc %}{{ _('We’re obsessed with protecting your privacy. That’s why Firefox private browsing gives you more control over your data.') }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-features-hub-detail' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-private{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Firefox: More protection. Less worry.') }}</span></h1>
+  <p class="tagline">{{ _('We’re obsessed with protecting your privacy. That’s why Firefox private browsing gives you more control over your data.') }}</p>
+{% endblock %}
+
+{% block features_list %}
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <div class="features-list-image"></div>
+        <h3>{{ _('Take back your data') }}</h3>
+        <p>{{ _('Sharing is caring, but not when it comes to your data. Firefox gives you more control than other private browsers. <a href="#">Use powerful ad-blockers</a> and <a href="#">tracking protection</a> to take back your data.*') }}</p>
+        <small>{{ _('*Tracking Protection is only available with Firefox for Android and Desktop') }}</small>
+        <a class="cta-link" href="{{ url('firefox.features') }}">{{ _('Learn more') }}</a>
+      </li>
+      <li class="features-list-item">
+        <div class="features-list-image"></div>
+        <h3>{{ _('Shake it off') }}</h3>
+        <p>{{ _('Yup, you have seen that ad everywhere. To get rid of it, Firefox not only blocks the ads you see right now, but also keeps them from popping up repeatedly. So <a href="#">drop that ad baggage and browse faster</a>.') }}</p>
+        <a class="cta-link" href="{{ url('firefox.features') }}">{{ _('Learn more') }}</a>
+      </li>
+      <li class="features-list-item">
+        <div class="features-list-image"></div>
+        <h3>{{ _('Trackers have zero chill') }}</h3>
+        <p>{{ _('Some websites attach trackers to collect your info long after you’ve left their page. Firefox Tracking Protection finds and blocks them automatically, so you can browse freely. Check out <a href="#">tracking protection</a>.') }}</p>
+        <a class="cta-link" href="{{ url('firefox.features') }}">{{ _('Learn more') }}</a>
+      </li>
+    </ul>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}

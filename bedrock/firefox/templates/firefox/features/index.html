@@ -1,0 +1,175 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/base.html" %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-features-hub-landing' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-landing{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Firefox features') }}</span></h1>
+  <p class="tagline">{{ _('Discover the best features within our badass browser') }}</p>
+{% endblock %}
+
+{% block features_list %}
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Modern features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.fast') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.fast') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.fast') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.fast') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.fast') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.fast') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Privacy features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.private-browsing') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.private-browsing') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.private-browsing') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.private-browsing') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.private-browsing') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.private-browsing') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Independence features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.independent') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.independent') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.independent') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.independent') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.independent') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+      <li class="features-list-item">
+        <a class="thumbnail-link" href="{{ url('firefox.features.independent') }}">
+          <div class="features-list-image"></div>
+          <h3>{{ _('Lorem ipsum') }}</h3>
+          <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+{% endblock %}
+
+{% block news %}{% endblock %}
+{% block values %}{% endblock %}
+{% block related_content %}{% endblock %}

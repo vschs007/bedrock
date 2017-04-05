@@ -29,6 +29,7 @@ from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
+from bedrock.wordpress.views import BlogPostsView
 
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
@@ -522,3 +523,31 @@ def ios_testflight(request):
     return l10n_utils.render(request,
                              'firefox/testflight.html',
                              {'newsletter_form': newsletter_form})
+
+
+def features_landing(request):
+    return l10n_utils.render(request, 'firefox/features/index.html')
+
+
+class FeaturesPrivateBrowsingView(BlogPostsView):
+    template_name = 'firefox/features/private-browsing.html'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['privacy', 'security']
+
+
+class FeaturesFastView(BlogPostsView):
+    template_name = 'firefox/features/fast.html'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['fastest']
+
+
+class FeaturesIndependentView(BlogPostsView):
+    template_name = 'firefox/features/independent.html'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['browser']

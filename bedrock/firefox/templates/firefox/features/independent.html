@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/base.html" %}
+
+{% block page_title %} — {{ _('Independent') }}{% endblock %}
+{% block page_desc %}{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-features-hub-detail' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-independent{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Independent') }}</span></h1>
+  <p class="tagline">{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit.') }}</p>
+{% endblock %}
+
+{% block features_list %}
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <div class="features-list-image"></div>
+        <h3>{{ _('We’re independent') }}</h3>
+        <p>{{ _('Firefox is a non-profit. That means we can do things that others can’t, like build new products and features without a hidden agenda. We champion your right to privacy with tools like Private Browsing with Tracking Protection, which go beyond what Google Chrome and Microsoft Edge offer.') }}</p>
+        <a class="cta-link" href="{{ url('firefox.features') }}">{{ _('Learn more') }}</a>
+      </li>
+      <li class="features-list-item">
+        <div class="features-list-image"></div>
+        <h3>{{ _('What you see is what you get') }}</h3>
+        <p>{{ _('We believe the Internet is for people, not profit. Unlike other browsers, we only collect the bare minimum of data to keep you going and always ask permission first. You’re in control over who sees your search and browsing history. Choice — that’s what a healthy Internet is all about!') }}</p>
+        <a class="cta-link" href="{{ url('firefox.features') }}">{{ _('Learn more') }}</a>
+      </li>
+      <li class="features-list-item">
+        <div class="features-list-image"></div>
+        <h3>{{ _('Built for the people, by the people') }}</h3>
+        <p>{{ _('By choosing Firefox, you support a global mission to create an equal opportunity Internet – that’s safe, welcoming and healthy for all. With our non-profit, open-source roots, we’re the only browser that’s championed by thousands of volunteers. Their efforts make us accessible to 90% of the world. We believe that this open exchange of smarts, hearts, and creativity is what will drive the innovation of tomorrow. Join us for the ride.') }}</p>
+        <a class="cta-link" href="{{ url('firefox.features') }}">{{ _('Learn more') }}</a>
+      </li>
+    </ul>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}
