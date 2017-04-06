@@ -1,0 +1,209 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros.html" import send_to_device with context %}
+
+{% extends "firefox/products/product-base.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Free Mobile Browser App for iPhone, iPad, iOS — Firefox') }}{% endblock %}
+{% block page_desc %}{{ _('Join the millions browsing better on iPhone and iPad. Firefox is fast and private. Install Firefox for iOS now!') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+
+{% block content %}
+<nav id="fx-global-nav" class="moz-sub-nav" role="navigation">
+  <div class="nav-horizontal-menu">
+    <ul class="subnav-primary-links">
+      <li><a href="{{ url('firefox') }}">Firefox</a></li>
+      <li><a href="{{ url('firefox.desktop.index') }}">Desktop Browser</a></li>
+      <li><a href="{{ url('firefox.android.index') }}">Android Browser</a></li>
+      <li><a href="{{ url('firefox.ios') }}">iOS Browser</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="https://support.mozilla.org">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-content">
+  <section id="page-intro" class="section page-intro">
+    <div class="content">
+
+      <div class="intro-content">
+        <h1 class="page-title"><span>Firefox for iOS</span></h1>
+        <h2 class="page-subtitle">Browser app for iPhone and iPad</h2>
+        <p class="tagline">Apple of our eye - it’s time to for an upgrade you’ll actually like.</p>
+      </div>
+
+      <div class="intro-download">
+        <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
+        </a>
+      </div>
+
+      <img class="hero-image" src="{{ static('img/firefox/desktop/fpo.jpg') }}" alt="">
+
+    </div>
+  </section> {#--/#page-head--#}
+
+
+  <section id="features" class="section features">
+    <div class="content">
+
+      <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
+
+      <ul class="features-list">
+        <li class="feature">
+          <img src="{{ static('img/firefox/desktop/fpo.jpg') }}" alt="">
+          <h3 class="feature-title">Device-hop like a pro</h3>
+          <div class="feature-desc">
+            <p>When you move, we move with Sync. Take your favorite bookmarks, open tabs, passwords, and history with you across iOS devices. Sync up your Firefox account.</p>
+          </div>
+          <p class="cta"><a href="#" class="cta-link">Learn more</a></p>
+        </li>
+
+        <li class="feature">
+          <img src="{{ static('img/firefox/desktop/fpo.jpg') }}" alt="">
+          <h3 class="feature-title">Control your privacy</h3>
+          <div class="feature-desc">
+            <p>To share or not to share&hellip; that’s totally up to you. Firefox doesn’t sell your data to third-party sites, so you get full-control over your browsing history with Tracking Protection and Private Browsing.</p>
+          </div>
+          <p class="cta"><a href="#" class="cta-link">Learn more</a></p>
+        </li>
+
+        <li class="feature">
+          <img src="{{ static('img/firefox/desktop/fpo.jpg') }}" alt="">
+          <h3 class="feature-title">Be a know-it-all</h3>
+          <div class="feature-desc">
+            <p>Find what you’re looking for faster with Firefox’s intelligent search suggestions. We do the heavy lifting by predicting search terms so you can answer those burning questions in seconds.</p>
+          </div>
+          <p class="cta"><a href="#" class="cta-link">Learn more</a></p>
+        </li>
+      </ul>
+
+    </div>
+  </section> {#--/#features--#}
+
+
+  <section id="news" class="section news">
+    <div class="content">
+      <h2 class="section-title"><span>{{ _('News from around the Web') }}</span></h2>
+
+      <div class="blog-feed hfeed">
+        <article class="entry">
+          <a class="url" rel="bookmark" href="#">
+            <img src="{{ static('img/firefox/desktop/fpo.jpg') }}" alt="">
+            <h3 class="entry-title">Post title</h3>
+          </a>
+          <div class="entry-summary">
+            <p>Goodbye, cruel world. Goodbye, cruel lamp. Goodbye, cruel velvet
+              drapes, lined with what would appear to be some sort of cruel muslin
+              and the cute little pom-pom curtain pull cords, cruel though they may be…</p>
+          </div>
+          <p class="entry-cta"><a href="#" class="cta-link">Blog Name</a></p>
+        </article>
+
+        <article class="entry">
+          <a class="url" rel="bookmark" href="#">
+            <img src="{{ static('img/firefox/desktop/fpo.jpg') }}" alt="">
+            <h3 class="entry-title">Post title</h3>
+          </a>
+          <div class="entry-summary">
+            <p>Goodbye, cruel world. Goodbye, cruel lamp. Goodbye, cruel velvet
+              drapes, lined with what would appear to be some sort of cruel muslin
+              and the cute little pom-pom curtain pull cords, cruel though they may be…</p>
+          </div>
+          <p class="entry-cta"><a href="#" class="cta-link">Blog Name</a></p>
+        </article>
+
+        <article class="entry">
+          <a class="url" rel="bookmark" href="#">
+            <img src="{{ static('img/firefox/desktop/fpo.jpg') }}" alt="">
+            <h3 class="entry-title" class="cta-link">Post title</h3>
+          </a>
+          <div class="entry-summary">
+            <p>Goodbye, cruel world. Goodbye, cruel lamp. Goodbye, cruel velvet
+              drapes, lined with what would appear to be some sort of cruel muslin
+              and the cute little pom-pom curtain pull cords, cruel though they may be…</p>
+          </div>
+          <p class="entry-cta"><a href="#" class="cta-link">Blog Name</a></p>
+        </article>
+      </div>
+
+    </div>
+  </section> {#--/#news--#}
+
+
+  <section id="values" class="section">
+    <div class="content">
+
+      <section id="private" class="card image-card">
+        <img src="{{ static('img/firefox/desktop/fpo.jpg') }}" class="card-image">
+        <p class="card-label"><strong>{{ _('Private') }}</strong></p>
+        <div class="card-content">
+          <h2 class="card-title">More Privacy</h2>
+          <p>
+            Let your freak flag fly… or don’t. Firefox’s powerful privacy tools give you control over your data, so that you can browse, bank, and binge-watch without a care.
+          </p>
+          <p class="card-cta"><a href="#" class="cta-link">See how Firefox protects your privacy</a></p>
+        </div>
+      </section>
+
+      <section id="modern" class="card">
+        <p class="card-label"><strong>{{ _('Modern') }}</strong></p>
+        <div class="card-content">
+          <h2 class="card-title">More Speed</h2>
+          <p>
+            Whether it’s launching a side hustle or live panda stream, your awesomeness waits for no one. That’s why Firefox is always evolving to keep you browsing at max speeds.
+          </p>
+          <p class="card-cta"><a href="#" class="cta-link">See why Firefox is faster</a></p>
+        </div>
+      </section>
+
+      <section id="independent" class="card">
+        <p class="card-label"><strong>{{ _('Independent') }}</strong></p>
+        <div class="card-content">
+          <h2 class="card-title">More Freedom</h2>
+          <p>
+            Corporate’s not really our style. We’re an independent browser fueled by a non-profit, Mozilla. So when you choose Firefox, you’re helping create a healthy, unrestricted Internet.
+          </p>
+          <p class="card-cta"><a href="#" class="cta-link">Learn more about independent browsing</a></p>
+        </div>
+      </section>
+
+    </div> {#--/.content--#}
+  </section> {#--/#values--#}
+
+
+  <aside id="page-outro" class="section">
+    <div class="content">
+      <div class="outro-content">
+        <img class="hero-image" src="{{ static('img/firefox/desktop/fpo.jpg') }}" alt="">
+        <h2>Start browsing with Firefox today</h2>
+        <p>Faster than ever, more secure, and always independent.</p>
+      </div>
+
+      <div class="outro-download">
+        <p>
+          <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
+          </a>
+        </p>
+      </div>
+    </div>
+  </aside> {#--/#page-outro--#}
+
+
+  <aside id="newsletter-subscribe" class="section">
+    <div class="content">
+      {{ email_newsletter_form(
+         title=_('Hungry for more?'),
+         subtitle=_('Get the latest &amp; greatest from Firefox delivered straight to your inbox.'),
+         button_class='button-dark')
+      }}
+    </div>
+  </aside> {#--/#newsletter-subscribe--#}
+
+</main>
+{% endblock %}

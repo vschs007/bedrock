@@ -1,0 +1,593 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../pebbles/components/newsletter';
+@import '../pebbles/components/modal';
+@import '../pebbles/includes/fonts/zilla-slab';
+
+
+// copied from pebbles/components/_global-nav.scss
+// should be moved to a common location
+$mq-nav-tablet:     'screen and (min-width: 880px)';
+$mq-nav-desktop:    'screen and (min-width: 1070px)';
+
+$color-burnt-orange: #9c432a;
+
+.page-content {
+    @include font-size(20px);
+    font-family: $font-zilla-slab;
+}
+
+.section-title {
+    @include font-size-level4;
+    text-transform: lowercase;
+    margin: 0 0 20px;
+
+    span {
+        @include box-decoration-break(clone);
+        background-color: #000;
+        color: #fff;
+        padding: 0 5px 0 60px;
+    }
+}
+
+.cta-link {
+    @include font-size(16px);
+    font-family: $font-open-sans;
+    font-weight: bold;
+    border-bottom: 2px solid $color-burnt-orange;
+    color: $color-burnt-orange;
+    display: inline-block;
+    padding-bottom: 10px;
+    text-decoration: none;
+    width: 90%;
+
+    &:after {
+        background: url('/media/img/firefox/hub/cta-arrow.svg') center right no-repeat;
+        content: '';
+        display: block;
+        float: right;
+        height: 14px;
+        padding-top: 10px;
+        transition: margin-right 100ms ease-in-out;
+        width: 12px;
+    }
+
+    &:hover,
+    &:focus {
+        color: lighten($color-burnt-orange, 10%);
+        border-color: lighten($color-burnt-orange, 10%);
+
+        &:after {
+            margin-right: -4px;
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Fx nav (should refactor to own .scss file for sharing/caring)
+
+.moz-sub-nav {
+    background: #fff;
+    display: none;
+
+    // 84px left margin, 42px right margin
+    @media #{$mq-nav-tablet} {
+        display: block;
+        transition: all 0.2s ease;
+
+        &.stuck {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            transform: translateY(-4px);
+            width: 100%;
+            z-index: 200;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: #000;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #000;
+        text-decoration: underline;
+        transition: color 0.1s ease-in-out;
+    }
+
+    .nav-horizontal-menu {
+        border-top: 2px solid #000;
+        margin: 0 25px 0 70px;
+
+        @media #{$mq-nav-desktop} {
+            margin-left: 84px;
+            margin-right: 42px;
+        }
+    }
+
+    .subnav-primary-links {
+        @include font-size(16px);
+        list-style-type: none;
+        margin: 0;
+        padding: 13px 0;
+
+        &> li {
+            display: inline-block;
+            padding: 0 6px;
+
+            a:hover,
+            a:active,
+            a:focus {
+                color: #ff9500;
+                text-decoration: none;
+            }
+
+            a:focus {
+                outline: none;
+            }
+
+            &:first-child {
+                padding-left: 0;
+            }
+        }
+
+        @media #{$mq-nav-desktop} {
+            &> li {
+                padding: 0 21px;
+            }
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Page head
+#page-intro {
+    .content:before {
+        @include gradient-horizontal($start-color: #69b9d0, $end-color: $color-burnt-orange);
+        content: '';
+        display: block;
+        height: 10px;
+        margin: 20px 10px 25px;
+    }
+
+    .page-title {
+        @include font-size-huge;
+        @include zilla-slab-highlight;
+        text-transform: lowercase;
+    }
+
+    .page-subtitle {
+        @include font-size-level4;
+        color: $color-text-tertiary;
+        font-weight: normal;
+    }
+
+    .tagline {
+        @include font-size-level2;
+        color: $color-text-secondary;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+
+    .intro-download {
+        text-align: center;
+    }
+
+    @media #{$mq-tablet} {
+        .intro-content {
+            @include span(8);
+        }
+
+        .intro-download {
+            @include span(4);
+            padding-top: 60px;
+        }
+    }
+
+    .download-link {
+        @include font-size(18px);
+        border-color: $color-burnt-orange;
+        border-radius: 0;
+        color: $color-burnt-orange;
+        font-family: $font-open-sans;
+        font-weight: bold;
+
+        &:hover,
+        &:focus {
+            background-color: transparentize($color-burnt-orange, .95);
+        }
+    }
+
+    .fx-privacy-link a:link,
+    .fx-privacy-link a:visited {
+        @include font-size(14px);
+        color: $color-link;
+        font-family: $font-open-sans;
+
+        &:hover,
+        &:focus {
+            color: darken($color-link, 10%);
+        }
+    }
+
+    .hero-image {
+        display: block;
+        margin: 0 auto;
+        height: 660px;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Features
+#features {
+    .content:before {
+        @include gradient-horizontal($start-color: #69b9d0, $end-color: $color-burnt-orange);
+        content: '';
+        display: block;
+        height: 6px;
+        margin: 20px 0 25px;
+    }
+
+    .feature {
+        padding: 20px 0;
+        border-bottom: 1px solid #000;
+
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        @media #{$mq-tablet} {
+            @include span(4);
+            border-bottom: 0;
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+    }
+
+    @supports (display:grid) {
+        @media #{$mq-tablet} {
+            .features-list {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 40px;
+            }
+
+            .feature {
+                float: none;
+                padding: 0;
+                width: auto;
+            }
+        }
+    }
+
+    .feature-title {
+        @include font-size-level2;
+        margin: 20px 0;
+        text-transform: lowercase;
+
+        @media #{$mq-desktop} {
+            margin-top: 40px;
+        }
+    }
+
+    .cta {
+        margin-top: 20px;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// News
+#news {
+    .content:before {
+        @include gradient-horizontal($start-color: #69b9d0, $end-color: $color-burnt-orange);
+        content: '';
+        display: block;
+        height: 6px;
+        margin: 0 0 25px;
+    }
+}
+
+.blog-feed {
+    .entry {
+        @include clearfix;
+        padding: 20px 0;
+        border-bottom: 1px solid #000;
+
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        @media #{$mq-tablet} {
+            padding: 20px 0 20px 300px;
+
+            img {
+                float: left;
+                margin: 0 0 0 -300px;
+                width: 260px;
+            }
+
+            .cta-link {
+                width: 50%;
+            }
+        }
+
+        @media #{$mq-desktop} {
+            padding: 40px 0 40px 430px;
+
+            img {
+                margin-left: -430px;
+                width: 390px;
+            }
+        }
+
+        .url:link,
+        .url:visited {
+            color: $color-text-primary;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                color: $color-link;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .entry-title {
+        @include font-size-level2;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox values
+#values {
+
+    .content:before {
+        @include gradient-horizontal($start-color: #69b9d0, $end-color: $color-burnt-orange);
+        content: '';
+        display: block;
+        height: 6px;
+        margin: 0 0 25px;
+    }
+
+    .card {
+        border-top: 4px solid #000;
+        padding: 20px 0;
+
+        @media #{$mq-tablet} {
+            @include span(6);
+        }
+    }
+
+    // the copy & cta for a card (not the .card-label)
+    .card-content {
+        background: #fff;
+        padding: 20px 40px;
+    }
+
+    .card-cta {
+        margin: 0;
+    }
+
+    .card-title {
+        @include font-size-level2;
+        text-transform: lowercase;
+    }
+
+    // the image displayed in a card. is overlayed by .card-content
+    .card-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 94%;
+        z-index: 1;
+    }
+
+    // specific styles for a card with an image. used with .card
+    .image-card {
+        border-top: none;
+        overflow: hidden;
+        padding-top: 380px;
+        position: relative;
+
+        .card-content,
+        .card-label {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-content {
+            margin-right: 80px;
+            padding-top: 40px;
+        }
+
+        .card-label strong {
+            background: #fff;
+            color: #000;
+        }
+    }
+
+    // the little highlighted bit of text at the top of a card
+    .card-label {
+        @include font-size-level4;
+        line-height: 1.1;
+        margin: 0 0 20px;
+        text-transform: lowercase;
+
+        strong {
+            background: #000;
+            color: #fff;
+            padding: 0 5px 0 40px;
+        }
+    }
+
+    @supports (display: grid) {
+        .content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 45px repeat(2, min-content);
+            grid-gap: 0 20px;
+
+            &:before {
+                grid-row: 1;
+                grid-column: 1 / span 2;
+            }
+        }
+
+        .card {
+            float: none;
+            padding-left: 0;
+            padding-right: 0;
+            width: auto;
+        }
+
+        #private {
+            display: grid;
+            grid-column: 1;
+            grid-row: 2 / span 2;
+            grid-template-rows: 1fr min-content min-content;
+            padding: 0 0 20px;
+
+            .card-image {
+                grid-row: 1 / span 3;
+                width: 100%;
+                height: 80%;
+            }
+
+            .card-label {
+                grid-row: 2;
+            }
+
+            .card-content {
+                grid-row: 3;
+            }
+        }
+    }
+
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Footer CTA
+#page-outro {
+    background-color: lightgray;
+
+    .content:before {
+        @include gradient-horizontal($start-color: #69b9d0, $end-color: $color-burnt-orange);
+        content: '';
+        display: block;
+        height: 6px;
+        margin: 20px 0 25px;
+    }
+
+    .hero-image {
+        display: block;
+        margin: 0 auto 20px;
+        width: 280px;
+    }
+
+    .outro-download {
+        text-align: center;
+    }
+
+    .download-link {
+        @include font-size(18px);
+        border-color: $color-burnt-orange;
+        border-radius: 0;
+        color: $color-burnt-orange;
+        font-family: $font-open-sans;
+        font-weight: bold;
+
+        &:hover,
+        &:focus {
+            background-color: transparentize($color-burnt-orange, .95);
+        }
+    }
+
+    .fx-privacy-link a:link,
+    .fx-privacy-link a:visited {
+        @include font-size(14px);
+        color: $color-link;
+        font-family: $font-open-sans;
+
+        &:hover,
+        &:focus {
+            color: darken($color-link, 10%);
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .outro-content {
+            @include span(8);
+            padding-left: 330px;
+        }
+
+        .hero-image {
+            float: left;
+            margin-left: -330px;
+        }
+
+        .outro-download {
+            @include span(4);
+            padding-top: 40px;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Newsletter
+#newsletter-subscribe {
+    background-color: lightgray;
+    padding: 0;
+    color: $color-text-primary;
+
+    .content {
+        padding: 20px;
+
+        &:before {
+            @include gradient-horizontal($start-color: #69b9d0, $end-color: $color-burnt-orange);
+            content: '';
+            display: block;
+            height: 6px;
+            margin: 20px 0 25px;
+        }
+
+        @media #{$mq-desktop-wide} {
+            width: $width-desktop-wide;
+        }
+    }
+}
