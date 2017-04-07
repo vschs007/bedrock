@@ -18,6 +18,9 @@
         // TODO: Remove and generate link in bedrock.
         $directDownloadLink.attr('href', downloadURL);
 
+        // Bug 1354334 - add a hint for test automation that page has loaded.
+        $('html').addClass('download-ready');
+
         // If user is not on an IE that blocks JS triggered downloads, start the
         // platform-detected download a second after DOM ready event. We don't rely on
         // the window load event as we have third-party tracking pixels.
