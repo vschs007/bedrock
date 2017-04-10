@@ -5,7 +5,7 @@
 @import '../../pebbles/includes/lib';
 @import '../../pebbles/components/newsletter';
 
-$grey: #eee;
+$grey: #ddd;
 
 @mixin greyBox() {
     @include border-box();
@@ -57,20 +57,103 @@ $grey: #eee;
     }
 }
 
+.author {
+    display: block;
+    font-style: italic;
+    font-weight: normal;
+    margin-top: 20px;
+
+    &:before {
+        content: '~ ';
+        display: inline-block;
+        margin-right: 4px;
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Intro
+
+@media #{$mq-tablet} {
+    #intro {
+        padding: 20px;
+    }
+}
+
+@media #{$mq-desktop} {
+    #intro {
+        padding: 40px;
+
+        .content {
+            display: flex;
+        }
+    }
+
+    #page-heading {
+        flex: 1 0 auto;
+        text-align: left;
+    }
+
+    #download-intro-wrapper {
+        align-items: center;
+        display: flex;
+        flex: 0 0 340px;
+        justify-content: right;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Features
+
+#features {
+}
+
+.feature {
+    text-align: center;
+}
+
+@media #{$mq-desktop} {
+    #features .content {
+        display: flex;
+    }
+
+    .feature {
+        flex: 0 0 calc(33% - 40px);
+        padding: 20px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Quote (main one)
+
+#quote {
+    .quote {
+        @include font-size-level3;
+        text-align: center;
+    }
+}
+
+.quote {
+    @include font-size-level4;
+    background: $grey;
+    font-weight: bold;
+    padding: 20px;
+}
+
+
+
+
 /* -------------------------------------------------------------------------- */
 // Blog feed list
 
-.blog-content {
-    background: $grey;
-}
-
-.blog-list {
+.blog-list,
+.press-list {
     display: block;
     position: relative;
 }
 
 .blog-list-item {
-    margin: 20px;
+    margin-bottom: 20px;
 
     h3 {
         @include font-size-level4;
@@ -93,7 +176,7 @@ $grey: #eee;
 }
 
 .blog-list-image {
-    background: #ddd;
+    background: $grey;
     display: block;
     height: 150px;
     margin-bottom: 20px;
@@ -120,6 +203,33 @@ $grey: #eee;
         right: 0;
     }
 }
+
+
+/* -------------------------------------------------------------------------- */
+// Press feed list
+
+.press-list-item {
+    border-top: 1px solid $grey;
+    padding: 20px 0;
+
+    &:last-child {
+        border-bottom: 1px solid $grey;
+    }
+
+    a:link,
+    a:visited {
+        color: #000;
+        display: block;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:visited,
+    a:focus {
+        text-decoration: underline;
+    }
+}
+
 
 /* -------------------------------------------------------------------------- */
 // Related content CTA's
@@ -191,6 +301,7 @@ $grey: #eee;
             flex-direction: row;
             justify-content: space-between;
 
+            .column,
             .copy,
             .feature {
                 flex: 0 0 calc(50% - 40px);
@@ -200,10 +311,17 @@ $grey: #eee;
         // product list
         .productlist {
             display: flex;
+            flex-wrap: wrap;
         }
 
         .product {
-            flex: 1 0 calc(33% - 40px);
+            flex: 1 0 calc(50% - 40px);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .product {
+            flex: 1 0 calc(25% - 40px);
         }
     }
 
@@ -211,10 +329,11 @@ $grey: #eee;
         // blog feeds
         .blog-list {
             display: flex;
+            justify-content: space-between;
         }
 
         .blog-list-item {
-            flex: 1 0 calc(50% - 40px);
+            flex: 0 0 calc(50% - 40px);
         }
     }
 }

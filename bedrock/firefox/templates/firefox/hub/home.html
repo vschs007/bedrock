@@ -14,71 +14,56 @@
 {% endblock %}
 
 {% block content %}
-  <section id="intro">
+  <section id="intro" class="page-section">
     <div class="content">
-      <h1>Firefox Web Browser: <br>Fast. Private. Safe.</h1>
+      <h1 id="page-heading">Firefox Web Browser: <br>Fast. Private. Safe.</h1>
 
-      <p>Firefox is faster, more private, and always independent. Available on desktop and mobile</p>
-
-      {{ download_firefox(dom_id='dlbutton-intro') }}
-    </div> {#--/.content--#}
+      <div id="download-intro-wrapper">
+        {{ download_firefox(dom_id='download-intro') }}
+      </div>
+    </div>
   </section> {#--/#intro--#}
 
-  <section id="everywhere">
+  <section id="features" class="page-section">
     <div class="content">
-      <ul class="productlist">
-        <li class="product" id="desktop">
-          <h3>Desktop</h3>
-
-          <p>
-            Learn more about the <a href="{{ url('firefox.desktop.index') }}">Firefox Desktop Browser</a>.
-          </p>
-        </li>
-        <li class="product" id="ios">
-          <h3>iOS</h3>
-
-          <p>
-            Learn more about the <a href="{{ url('firefox.ios') }}">Firefox iOS Browser</a>.
-          </p>
-        </li>
-        <li class="product" id="android">
-          <h3>Android</h3>
-
-          <p>
-            Learn more about the <a href="{{ url('firefox.android.index') }}">Firefox Android Browser</a>.
-          </p>
-        </li>
-      </ul>
-    </div> {#--/.content--#}
-  </section> {#--/#everywhere--#}
-
-  <section id="performant">
-    <div class="content columns2">
-      <div class="copy">
-        <h2>A Performant Contemporary Browser</h2>
+      <section id="modern" class="feature">
+        <h2>Modern</h2>
 
         <p>
-          If you need me, I'll be down here on the floor. Dying. I'm no hero. I just put my bra on one boob at a time. How do you know a python ate it? Did it leave a note? C'mon Dad, just let me bite down on the bean. If I were a hamburger you'd come and watch! Gene, you saved us. I owe you my life. Hey Jimmy Jr. Did you see those two squirrels fighting in the courtyard? Let's raise our glasses! You're right. I'm a firestarter and a jinx. I'm going to destroy this whole family. It's an erotic friend fiction story that I just wrote. I hope you like it, because you're all in it. It's called 'Buttloose.' Put it on a t-shirt, Jimmy Jr, I don't want to hear it. I'm a smart, strong, sensual woman. Dad, you're the best pimp a girl could ever have. I thought I saw a baby bump.
+          I'm half machine. I'm a monster. He'll want to use your yacht, and I don't want this thing smelling like fish. Marry me. Whoa, this guy's straight? I hear the jury's still out on science.
         </p>
-      </div> {#--/.copy--#}
-      <aside class="feature">
-        <div class="video-wrapper">
-          <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/9STeegpxSb0?rel=0" frameborder="0" allowfullscreen></iframe>
-        </div>
-      </aside> {#--/.feature--#}
-    </div> {#--/.content--#}
-  </section> {#--/#performant--#}
-
-  <section id="privacy">
-    <div class="content columns2">
-      <div class="copy">
-        <h2>We Respect and Protect Your Privacy</h2>
+      </section>
+      <section id="private" class="feature">
+        <h2>Private</h2>
 
         <p>
-          Dear God, this is Tina from school. There's a lot of carrots in that stew. There is one place I like to go. The boys' locker room. You can only see up to their ankles. Not if you're a fish. There is one place I like to go. The boys' locker room. You can only see up to their ankles. Ok then, see you on our date! Dad, you're the best pimp a girl could ever have. Buns...sen. Your ass is grass and I'm gonna mow it. My bra's chafing me. Argh!... Wait, I like the library. Dear God, this is Tina from school. Chad the Zombie touched the butt of that girl with the frosted hair from my art class. I think her name is Kristi. How do you know a python ate it? Did it leave a note?
+          That's why you always leave a note! There's so many poorly chosen words in that sentence. It's a hug, Michael. I'm hugging you. There's only one man I've ever called a coward, and that's Brian Doyle Murray. No, what I'm calling you is a television actor.
         </p>
-      </div> {#--/.copy--#}
-      <aside class="feature">
+      </section>
+      <section id="independent" class="feature">
+        <h2>Independent</h2>
+
+        <p>
+          Well, what do you expect, mother? Now, when you do this without getting punched in the chest, you'll have more fun. As you may or may not know, Lindsay and I have hit a bit of a rough patch. Steve Holt!
+        </p>
+      </section>
+    </div> {#--/.content--#}
+  </section> {#--/#features--#}
+
+  <div id="quote" class="page-section">
+    <div class="content">
+      <blockquote class="quote">
+        Break up with Google quote here
+
+        <cite class="author">Vogue</cite>
+      </blockquote>
+    </div>
+  </div>
+
+{% if LANG.startswith('en-') %}
+  <section id="feeds" class="page-section">
+    <div class="content columns2">
+      <section id="feed-blog" class="column">
       {% if articles_privacy %}
         <ul class="blog-list">
         {% for article in articles_privacy %}
@@ -98,42 +83,65 @@
           No blog posts! Fallback image?
         </figure>
       {% endif %}
-      </aside> {#--/.feature--#}
-    </div> {#--/.content--#}
-  </section> {#--/#privacy--#}
+      </section>
+      <section id="feed-3rdparty" class="column">
+        <ul class="press-list">
+          <li class="press-list-item">
+            <p><strong><a href="">No network? No problem for Google Docs on Firefox</a></strong></p>
 
-  <section id="independent">
-    <div class="content columns2">
-      <div class="copy">
-        <h2>The Last Independent Browser</h2>
-
-        <p>
-          The hand wants what the hand wants. Put it on a t-shirt, Jimmy Jr, I don't want to hear it. uhhhhhhhhhhhhhhhh My boob? If you need me, I'll be down here on the floor. Dying. Tina reached towards Jimmy Junior's butt: 'Your lips say no but your butt says yes.' Dad, I need you to drop everything and shave my legs. I know how the shark thinks. It's confused. It doesn't know why we want to kill it. It just wants to go home. YOU GORGEOUS IDIOT! Sausage leather belts. My crotch is itchy. Butts. I want a dry erase board so I can write down all my private thoughts and then erase them immediately. Do you think horses get songs stuck in their heads?
-        </p>
-      </div> {#--/.copy--#}
-      <aside class="feature">
-      {% if articles_independent %}
-        <ul class="blog-list">
-        {% for article in articles_independent %}
-          <li class="blog-list-item">
-            <article>
-              <a rel="external" href="{{ article.link }}" class="blog-list-image">
-                <span class="meta">{{ _('Tag') }}</span>
-              </a>
-              <h3><a rel="external" href="{{ article.link }}">{{ article.blog_title }}</a></h3>
-              <p>{{ article.htmlify() }}</p>
-            </article>
+            <small class="author">Publisher</small>
           </li>
-        {% endfor %}
+          <li class="press-list-item">
+            <p><strong><a href="">Firefox Focus iPhone Browser is Built for Privacy</a></strong></p>
+
+            <small class="author">Publisher</small>
+          </li>
+          <li class="press-list-item">
+            <p><strong><a href="">I'm not spooked. What's the next thing after spooked? I'm that.</a></strong></p>
+
+            <small class="author">Tina Belcher</small>
+          </li>
         </ul>
-      {% else %}
-        <figure class="feature-image">
-          No blog posts! Fallback image?
-        </figure>
-      {% endif %}
-      </aside> {#--/.feature--#}
-    </div> {#--/.content-_#}
-  </section> {#--/#independent--#}
+
+        <blockquote class="quote">
+          Time for the charm bomb to explode.
+
+          <cite class="author">Tina Belcher</cite>
+        </blockquote>
+      </section>
+    </div>
+  </section>
+{% endif %}
+
+  <section id="mobile" class="page-section">
+    <div class="content">
+      <h2>Mobile Everywhere</h2>
+
+      <ul class="productlist">
+        <li class="product" id="ios">
+          <h3>iOS</h3>
+
+          <p>
+            Learn more about the <a href="{{ url('firefox.ios') }}">Firefox iOS Browser</a>.
+          </p>
+        </li>
+        <li class="product" id="android">
+          <h3>Android</h3>
+
+          <p>
+            Learn more about the <a href="{{ url('firefox.android.index') }}">Firefox Android Browser</a>.
+          </p>
+        </li>
+        <li class="product" id="focus">
+          <h3>Focus</h3>
+
+          <p>
+            Learn more about the <a href="">Firefox Focus Browser</a>.
+          </p>
+        </li>
+      </ul>
+    </div> {#--/.content--#}
+  </section> {#--/#mobile--#}
 
   <aside id="related" class="related-content">
     <div class="content">
