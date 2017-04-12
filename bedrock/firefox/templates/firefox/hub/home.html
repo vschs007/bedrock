@@ -14,6 +14,19 @@
 {% endblock %}
 
 {% block content %}
+  <nav id="fx-global-nav" class="moz-sub-nav" role="navigation">
+    <div class="nav-horizontal-menu">
+      <ul class="subnav-primary-links">
+        <li><a href="{{ url('firefox') }}">Firefox</a></li>
+        <li><a href="{{ url('firefox.desktop.index') }}">Desktop Browser</a></li>
+        <li><a href="{{ url('firefox.android.index') }}">Android Browser</a></li>
+        <li><a href="{{ url('firefox.ios') }}">iOS Browser</a></li>
+        <li><a href="">Features</a></li>
+        <li><a href="https://support.mozilla.org">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <section id="intro" class="page-section">
     <div class="content">
       <h1 id="page-heading">Firefox Web Browser: <br>Fast. Private. Safe.</h1>
@@ -173,4 +186,6 @@
   {% endwith %}
 {% endblock %}
 
-{% block js %}{% endblock %}
+{% block js %}
+  {% javascript 'firefox-hub-home' %}
+{% endblock %}

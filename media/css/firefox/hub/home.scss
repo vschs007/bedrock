@@ -7,11 +7,98 @@
 
 $grey: #ddd;
 
+// copied from pebbles/components/_global-nav.scss
+// should be moved to a common location
+$mq-nav-tablet:     'screen and (min-width: 880px)';
+$mq-nav-desktop:    'screen and (min-width: 1070px)';
+
 @mixin greyBox() {
     @include border-box();
     background: $grey;
     margin: 20px;
     padding: 20px;
+}
+
+/* -------------------------------------------------------------------------- */
+// Fx nav (should refactor to own .scss file for sharing/caring)
+
+.moz-sub-nav {
+    background: #fff;
+    display: none;
+
+    // 84px left margin, 42px right margin
+
+    @media #{$mq-nav-tablet} {
+        display: block;
+        transition: all 0.2s ease;
+
+        &.stuck {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            transform: translateY(-4px);
+            width: 100%;
+            z-index: 200;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: #000;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #000;
+        text-decoration: underline;
+        transition: color 0.1s ease-in-out;
+    }
+
+    .nav-horizontal-menu {
+        border-top: 2px solid #000;
+        margin: 0 25px 0 70px;
+
+        @media #{$mq-nav-desktop} {
+            margin-left: 84px;
+            margin-right: 42px;
+        }
+    }
+
+    .subnav-primary-links {
+        @include font-size(16px);
+        list-style-type: none;
+        margin: 0;
+        padding: 13px 0;
+
+        &> li {
+            display: inline-block;
+            padding: 0 6px;
+
+            a:hover,
+            a:active,
+            a:focus {
+                color: #ff9500;
+                text-decoration: none;
+            }
+
+            a:focus {
+                outline: none;
+            }
+
+            &:first-child {
+                padding-left: 0;
+            }
+        }
+
+        @media #{$mq-nav-desktop} {
+            &> li {
+                padding: 0 21px;
+            }
+        }
+    }
 }
 
 .content {
@@ -104,9 +191,6 @@ $grey: #ddd;
 
 /* -------------------------------------------------------------------------- */
 // Features
-
-#features {
-}
 
 .feature {
     text-align: center;
