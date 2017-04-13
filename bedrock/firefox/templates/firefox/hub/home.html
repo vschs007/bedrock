@@ -14,10 +14,11 @@
 {% endblock %}
 
 {% block content %}
+  {# hidden for screens smaller than 880px wide #}
   <nav id="fx-global-nav" class="moz-sub-nav" role="navigation">
     <div class="nav-horizontal-menu">
+      <a id="fx-global-nav-home-link" href="{{ url('firefox') }}"><img src="{{ static('img/logos/firefox/outline-black.svg') }}" width="26" height="26" /></a>
       <ul class="subnav-primary-links">
-        <li><a href="{{ url('firefox') }}">Firefox</a></li>
         <li><a href="{{ url('firefox.desktop.index') }}">Desktop Browser</a></li>
         <li><a href="{{ url('firefox.android.index') }}">Android Browser</a></li>
         <li><a href="{{ url('firefox.ios') }}">iOS Browser</a></li>
@@ -27,153 +28,208 @@
     </div>
   </nav>
 
-  <section id="intro" class="page-section">
-    <div class="content">
-      <h1 id="page-heading">Firefox Web Browser: <br>Fast. Private. Safe.</h1>
+  <div class="hub-content">
+    <hr class="content section-break section-break-tall" />
 
-      <div id="download-intro-wrapper">
-        {{ download_firefox(dom_id='download-intro') }}
+    <section id="intro" class="page-section">
+      <div class="content columns2">
+        <div class="column">
+          <h1 id="page-heading"><span>Firefox</span></h1>
+
+          <p>
+            Indie spirit, badass browser.
+          </p>
+        </div>
+
+        <div class="column" id="download-intro-wrapper">
+          {{ download_firefox(dom_id='download-intro') }}
+        </div>
+      </div>
+    </section> {#--/#intro--#}
+
+    <section id="features" class="page-section">
+      <div class="content columns2">
+        <div id="privacy" class="column">
+          <section id="private" class="card image-card">
+            <img src="{{ static('img/firefox/private-browsing/private-browsing-meta.png') }}" class="card-image" width="800">
+
+            <strong class="card-label">Private</strong>
+
+            <div class="card-content">
+              <h2 class="card-heading">We've got your back</h2>
+
+              <p>
+                That's why you always leave a note! There's so many poorly chosen words in that sentence. It's a hug, Michael. I'm hugging you. There's only one man I've ever called a coward, and that's Brian Doyle Murray. No, what I'm calling you is a television actor.
+              </p>
+
+              <a class="card-cta" href="">See how we do it</a>
+            </div>
+          </section>
+        </div>
+        <div id="modern-independent" class="column">
+          <section id="modern" class="card card-stacked">
+            <strong class="card-label">Modern</strong>
+
+            <div class="card-content">
+              <h2 class="card-heading">Go further, faster</h2>
+
+              <p>
+                I'm half machine. I'm a monster. He'll want to use your yacht, and I don't want this thing smelling like fish. Marry me. Whoa, this guy's straight? I hear the jury's still out on science.
+              </p>
+
+              <a class="card-cta" href="">See how we do it</a>
+            </div>
+          </section>
+          <section id="independent" class="card card-stacked">
+            <strong class="card-label">Independent</strong>
+
+            <div class="card-content">
+              <h2 class="card-heading">Still indie, still free</h2>
+
+              <p>
+                Well, what do you expect, mother? Now, when you do this without getting punched in the chest, you'll have more fun. As you may or may not know, Lindsay and I have hit a bit of a rough patch. Steve Holt!
+              </p>
+
+              <a class="card-cta" href="">See how we do it</a>
+            </div>
+          </section>
+        </div>
+      </div> {#--/.content--#}
+    </section> {#--/#features--#}
+
+    <hr class="content section-break" />
+
+    <div class="page-section">
+      <div class="content">
+        <div class="card quote-card quote-primary">
+          <strong class="card-label">People are talking</strong>
+
+          <div class="card-content">
+            <a href="">
+              <p class="quote-intro">
+                Vogue Culture News says:
+              </p>
+
+              <blockquote class="quote">
+                <strong>Break up with Google.</strong>
+                <br />
+                Use a web browser you have more control over, and which has more
+                plug-ins that you can use for privacy, such as <em>Firefox</em>.
+              </blockquote>
+            </a>
+          </div> {#--/.card-content--#}
+        </div> {#--/.card--#}
       </div>
     </div>
-  </section> {#--/#intro--#}
 
-  <section id="features" class="page-section">
-    <div class="content">
-      <section id="modern" class="feature">
-        <h2>Modern</h2>
+  {% if LANG.startswith('en-') %}
+    <hr class="content section-break" />
 
-        <p>
-          I'm half machine. I'm a monster. He'll want to use your yacht, and I don't want this thing smelling like fish. Marry me. Whoa, this guy's straight? I hear the jury's still out on science.
-        </p>
-      </section>
-      <section id="private" class="feature">
-        <h2>Private</h2>
+    <section id="feeds" class="page-section">
+      <div class="content columns2">
+        <section id="feed-blog" class="column">
+        {% if articles_privacy %}
+          <ul class="blog-list">
+          {% for article in articles_privacy %}
+            <li class="blog-list-item">
+              <article>
+                <a rel="external" href="{{ article.link }}" class="blog-list-image">
+                  <span class="meta">{{ _('Tag') }}</span>
+                </a>
+                <h3><a rel="external" href="{{ article.link }}">{{ article.blog_title }}</a></h3>
+                <p>{{ article.htmlify() }}</p>
+              </article>
+            </li>
+          {% endfor %}
+          </ul>
+        {% else %}
+          <figure class="feature-image">
+            No blog posts! Fallback image?
+          </figure>
+        {% endif %}
+        </section>
+        <section id="feed-3rdparty" class="column">
+          <ul class="press-list">
+            <li class="press-list-item">
+              <p><strong><a href="">No network? No problem for Google Docs on Firefox</a></strong></p>
 
-        <p>
-          That's why you always leave a note! There's so many poorly chosen words in that sentence. It's a hug, Michael. I'm hugging you. There's only one man I've ever called a coward, and that's Brian Doyle Murray. No, what I'm calling you is a television actor.
-        </p>
-      </section>
-      <section id="independent" class="feature">
-        <h2>Independent</h2>
+              <small class="author">Publisher</small>
+            </li>
+            <li class="press-list-item">
+              <p><strong><a href="">Firefox Focus iPhone Browser is Built for Privacy</a></strong></p>
 
-        <p>
-          Well, what do you expect, mother? Now, when you do this without getting punched in the chest, you'll have more fun. As you may or may not know, Lindsay and I have hit a bit of a rough patch. Steve Holt!
-        </p>
-      </section>
-    </div> {#--/.content--#}
-  </section> {#--/#features--#}
+              <small class="author">Publisher</small>
+            </li>
+            <li class="press-list-item">
+              <p><strong><a href="">I'm not spooked. What's the next thing after spooked? I'm that.</a></strong></p>
 
-  <div id="quote" class="page-section">
-    <div class="content">
-      <blockquote class="quote">
-        Break up with Google quote here
+              <small class="author">Tina Belcher</small>
+            </li>
+          </ul>
 
-        <cite class="author">Vogue</cite>
-      </blockquote>
-    </div>
-  </div>
+          <blockquote class="quote">
+            Time for the charm bomb to explode.
 
-{% if LANG.startswith('en-') %}
-  <section id="feeds" class="page-section">
-    <div class="content columns2">
-      <section id="feed-blog" class="column">
-      {% if articles_privacy %}
-        <ul class="blog-list">
-        {% for article in articles_privacy %}
-          <li class="blog-list-item">
-            <article>
-              <a rel="external" href="{{ article.link }}" class="blog-list-image">
-                <span class="meta">{{ _('Tag') }}</span>
-              </a>
-              <h3><a rel="external" href="{{ article.link }}">{{ article.blog_title }}</a></h3>
-              <p>{{ article.htmlify() }}</p>
-            </article>
+            <cite class="author">Tina Belcher</cite>
+          </blockquote>
+        </section>
+      </div>
+    </section>
+  {% endif %}
+
+    <hr class="content section-break" />
+
+    <section id="mobile" class="page-section">
+      <div class="content">
+        <h2>Mobile Everywhere</h2>
+
+        <ul class="productlist">
+          <li class="product" id="ios">
+            <h3>iOS</h3>
+
+            <p>
+              Learn more about the <a href="{{ url('firefox.ios') }}">Firefox iOS Browser</a>.
+            </p>
           </li>
-        {% endfor %}
+          <li class="product" id="android">
+            <h3>Android</h3>
+
+            <p>
+              Learn more about the <a href="{{ url('firefox.android.index') }}">Firefox Android Browser</a>.
+            </p>
+          </li>
+          <li class="product" id="focus">
+            <h3>Focus</h3>
+
+            <p>
+              Learn more about the <a href="">Firefox Focus Browser</a>.
+            </p>
+          </li>
         </ul>
-      {% else %}
-        <figure class="feature-image">
-          No blog posts! Fallback image?
-        </figure>
-      {% endif %}
-      </section>
-      <section id="feed-3rdparty" class="column">
-        <ul class="press-list">
-          <li class="press-list-item">
-            <p><strong><a href="">No network? No problem for Google Docs on Firefox</a></strong></p>
+      </div> {#--/.content--#}
+    </section> {#--/#mobile--#}
 
-            <small class="author">Publisher</small>
-          </li>
-          <li class="press-list-item">
-            <p><strong><a href="">Firefox Focus iPhone Browser is Built for Privacy</a></strong></p>
+    <hr class="content section-break" />
 
-            <small class="author">Publisher</small>
-          </li>
-          <li class="press-list-item">
-            <p><strong><a href="">I'm not spooked. What's the next thing after spooked? I'm that.</a></strong></p>
-
-            <small class="author">Tina Belcher</small>
-          </li>
-        </ul>
-
-        <blockquote class="quote">
-          Time for the charm bomb to explode.
-
-          <cite class="author">Tina Belcher</cite>
-        </blockquote>
-      </section>
-    </div>
-  </section>
-{% endif %}
-
-  <section id="mobile" class="page-section">
-    <div class="content">
-      <h2>Mobile Everywhere</h2>
-
-      <ul class="productlist">
-        <li class="product" id="ios">
-          <h3>iOS</h3>
-
-          <p>
-            Learn more about the <a href="{{ url('firefox.ios') }}">Firefox iOS Browser</a>.
-          </p>
-        </li>
-        <li class="product" id="android">
-          <h3>Android</h3>
-
-          <p>
-            Learn more about the <a href="{{ url('firefox.android.index') }}">Firefox Android Browser</a>.
-          </p>
-        </li>
-        <li class="product" id="focus">
-          <h3>Focus</h3>
-
-          <p>
-            Learn more about the <a href="">Firefox Focus Browser</a>.
-          </p>
-        </li>
-      </ul>
-    </div> {#--/.content--#}
-  </section> {#--/#mobile--#}
-
-  <aside id="related" class="related-content">
-    <div class="content">
-      <section class="related-content-item">
-        <div class="related-content-item-container">
-          <h2>{{ _('Get Firefox for desktop today') }}</h2>
-          <p>{{ _('Firefox is faster, more private, and always independent. Available on desktop and mobile.') }}</p>
-          {{ download_firefox(dom_id='features-footer-download-firefox') }}
-        </div>
-      </section>
-      <section class="related-content-item">
-        <div class="related-content-item-container">
-          <h2>{{ _('Keep up with all things Firefox') }}</h2>
-          <p>Dr. Yap is dreamy. When he's looking at my molars, it's like he's looking into my soul.</p>
-          {{ email_newsletter_form(include_title=False, spinner_color='#000', button_class='button-hollow') }}
-        </div>
-      </section>
-    </div>
-  </aside> {#--/#related--#}
+    <aside id="related" class="related-content">
+      <div class="content">
+        <section class="related-content-item">
+          <div class="related-content-item-container">
+            <h2>{{ _('Get Firefox for desktop today') }}</h2>
+            <p>{{ _('Firefox is faster, more private, and always independent. Available on desktop and mobile.') }}</p>
+            {{ download_firefox(dom_id='features-footer-download-firefox') }}
+          </div>
+        </section>
+        <section class="related-content-item">
+          <div class="related-content-item-container">
+            <h2>{{ _('Keep up with all things Firefox') }}</h2>
+            <p>Dr. Yap is dreamy. When he's looking at my molars, it's like he's looking into my soul.</p>
+            {{ email_newsletter_form(include_title=False, spinner_color='#000', button_class='button-hollow') }}
+          </div>
+        </section>
+      </div>
+    </aside> {#--/#related--#}
+  </div> {#--/.hub-content--#}
 {% endblock %}
 
 {% block site_footer %}

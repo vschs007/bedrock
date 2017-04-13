@@ -1,0 +1,144 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+$color-card-cta: #9C432A;
+$card-padding: 20px;
+
+.card {
+    padding: 20px 0 40px;
+    a:active,
+    a:hover,
+    a:link,
+    a:visited {
+        color: $color-card-cta;
+        text-decoration: none;
+    }
+
+    &.card-stacked {
+        border-top: 4px solid #000;
+    }
+}
+
+// the copy & cta for a card (not the .card-label)
+.card-content {
+    background: #fff;
+    padding: 20px 20px 20px $card-padding;
+
+    @media #{$mq-tablet} {
+        padding-left: $card-padding * 2;
+    }
+}
+
+// the little highlighted bit of text at the top of a card
+.card-label {
+    @include font-size-level4;
+    background: #000;
+    color: #fff;
+    display: inline-block;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    padding: 0 5px 0 $card-padding;
+    text-transform: lowercase;
+
+    @media #{$mq-tablet} {
+        padding-left: $card-padding * 2;
+    }
+}
+
+// the primary link within .card-content
+.card-cta {
+    border-bottom: 1px solid $color-card-cta;
+    color: $color-card-cta;
+    display: inline-block;
+    padding-bottom: 10px;
+    width: 75%;
+
+    &:after {
+        background: url('/media/img/firefox/hub/cta-arrow.svg') center right no-repeat;
+        content: '';
+        display: block;
+        float: right;
+        height: 14px;
+        padding-top: 10px;
+        width: 12px;
+    }
+}
+
+// the image displayed in a card. is overlayed by .card-content
+.card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: none;
+    z-index: 1;
+}
+
+// specific styles for a card with an image. used with .card
+.image-card {
+    border-top: none;
+    overflow: hidden;
+    padding-top: 240px;
+    position: relative;
+
+    .card-content,
+    .card-label {
+        position: relative;
+        z-index: 2;
+    }
+
+    .card-content {
+        margin-right: $card-padding;
+        padding-top: 40px;
+    }
+
+    .card-label {
+        background: #fff;
+        color: #000;
+        margin-bottom: 20px;
+    }
+
+    @media #{$mq-tablet} {
+        .card-content {
+            margin-right: $card-padding * 2;
+        }
+    }
+}
+
+.quote-card {
+    a:active,
+    a:link,
+    a:visited,
+    a:hover {
+        color: #000;
+    }
+
+    .quote-intro {
+        @include font-size-level4;
+        border-bottom: 1px solid #9b9b9b;
+        display: inline-block;
+        padding-bottom: 10px;
+    }
+
+    .quote {
+        @include font-size-level4;
+        font-style: italic;
+
+        em {
+            color: #9C432A;
+        }
+    }
+
+    &.quote-primary .quote {
+        @include font-size-level3;
+    }
+
+    @media #{$mq-tablet} {
+        .quote-intro {
+            //display: block;
+            width: 50%;
+        }
+    }
+}
