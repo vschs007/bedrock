@@ -1464,7 +1464,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/hub/home.js',
+            'js/hubs/sub-nav.js',
         ),
         'output_filename': 'js/firefox-hub-home-bundle.js',
     },
