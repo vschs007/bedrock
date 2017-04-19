@@ -541,11 +541,12 @@ class FirefoxHubView(l10n_utils.LangFilesMixin, TemplateView):
         context = super(FirefoxHubView, self).get_context_data(**kwargs)
         locale = l10n_utils.get_locale(self.request)
 
-        # en-* only for blog posts?
+        # en-* only for blog posts
         if locale.startswith('en-'):
             try:
-                context['articles_privacy'] = list(BlogArticle.objects.filter(blog_name='Firefox')[:2])
+                # TODO: filter by tag 'home'
+                context['blog_article'] = list(BlogArticle.objects.filter(blog_name='Firefox')[:1])
             except Exception:
-                context['articles_privacy'] = None
+                context['blog_article'] = None
 
         return context

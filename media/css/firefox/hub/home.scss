@@ -49,40 +49,6 @@ $grey: #ddd;
     }
 }
 
-.video-wrapper,
-.feature-image,
-.product {
-    @include greyBox();
-}
-
-.video-wrapper {
-    height: 0;
-    padding-bottom: 56.25%; /* 16x9 aspect */
-    padding-top: 25px;
-    position: relative;
-
-    iframe {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
-}
-
-.author {
-    display: block;
-    font-style: italic;
-    font-weight: normal;
-    margin-top: 20px;
-
-    &:before {
-        content: '~ ';
-        display: inline-block;
-        margin-right: 4px;
-    }
-}
-
 /* -------------------------------------------------------------------------- */
 // Intro
 
@@ -197,6 +163,10 @@ $grey: #ddd;
     }
 }
 
+#third-party-feed .card.card-stacked {
+    border-width: 1px;
+}
+
 
 /* -------------------------------------------------------------------------- */
 // Press feed list
@@ -223,6 +193,12 @@ $grey: #ddd;
     }
 }
 
+
+#mobile-card {
+    .card-content-wrapper {
+        @include at2x('/media/img/foundation/annualreport/2015/bg-banner-desktop.jpg', 1280px, 612px);
+    }
+}
 
 /* -------------------------------------------------------------------------- */
 // Related content CTA's

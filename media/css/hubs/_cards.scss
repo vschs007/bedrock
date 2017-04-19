@@ -4,6 +4,8 @@
 
 @import '../../pebbles/includes/lib';
 
+@import 'cta-link';
+
 $color-card-cta: #9C432A;
 $card-padding: 20px;
 
@@ -50,38 +52,21 @@ $card-padding: 20px;
 
 // the primary link within .card-content
 .card-cta {
-    border-bottom: 1px solid $color-card-cta;
-    color: $color-card-cta;
-    display: inline-block;
-    padding-bottom: 10px;
-    width: 75%;
-
-    &:after {
-        background: url('/media/img/firefox/hub/cta-arrow.svg') center right no-repeat;
-        content: '';
-        display: block;
-        float: right;
-        height: 14px;
-        padding-top: 10px;
-        width: 12px;
-    }
+    @extend .cta-link;
 }
 
-// the image displayed in a card. is overlayed by .card-content
-.card-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    max-width: none;
-    z-index: 1;
-}
-
-// specific styles for a card with an image. used with .card
-.image-card {
-    border-top: none;
+.featured-image-card {
     overflow: hidden;
     padding-top: 240px;
     position: relative;
+
+    .card-image {
+        left: 0;
+        max-width: none;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
 
     .card-content,
     .card-label {
@@ -89,15 +74,15 @@ $card-padding: 20px;
         z-index: 2;
     }
 
-    .card-content {
-        margin-right: $card-padding;
-        padding-top: 40px;
-    }
-
     .card-label {
         background: #fff;
         color: #000;
         margin-bottom: 20px;
+    }
+
+    .card-content {
+        margin-right: $card-padding;
+        padding-top: 40px;
     }
 
     @media #{$mq-tablet} {
@@ -107,38 +92,47 @@ $card-padding: 20px;
     }
 }
 
-.quote-card {
-    a:active,
-    a:link,
-    a:visited,
-    a:hover {
-        color: #000;
+// specific styles for a card with an image. used with .card
+.image-card {
+    .card-content-wrapper {
+        background-position: top left;
+        background-repeat: no-repeat;
+        padding-top: 60px;
     }
 
-    .quote-intro {
-        @include font-size-level4;
-        border-bottom: 1px solid #9b9b9b;
-        display: inline-block;
-        padding-bottom: 10px;
-    }
-
-    .quote {
-        @include font-size-level4;
-        font-style: italic;
-
-        em {
-            color: #9C432A;
-        }
-    }
-
-    &.quote-primary .quote {
-        @include font-size-level3;
+    .card-content {
+        margin-right: $card-padding;
     }
 
     @media #{$mq-tablet} {
-        .quote-intro {
-            //display: block;
-            width: 50%;
+        .card-content {
+            margin-right: auto;
+            padding-bottom: $card-padding * 3;
+            padding-right: $card-padding * 2;
+            width: 40%;
         }
     }
 }
+
+
+.quote-intro {
+    @include font-size-level4;
+    border-bottom: 1px solid #9b9b9b;
+    display: inline-block;
+    padding-bottom: 10px;
+
+    @media #{$mq-tablet} {
+        width: 50%;
+    }
+}
+
+.quote {
+    @include font-size-level2;
+    font-style: italic;
+    margin-bottom: 20px;
+
+    em {
+        color: #9C432A;
+    }
+}
+
