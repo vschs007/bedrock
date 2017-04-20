@@ -16,7 +16,7 @@
 {% block content %}
   {% include 'firefox/hub/_sub-nav.html' %}
 
-  <div class="hub-content">
+  <div id="hub-content">
     <hr class="content section-break section-break-tall" />
 
     <section id="intro" class="page-section">
@@ -132,42 +132,91 @@
     <hr class="content section-break" />
 
     <section id="feeds" class="page-section">
-    {% if blog_article %}
+    {% if blog_article or browser_article or privacy_article %}
       <section id="blog-feed" class="content">
-        <div class="card card-blog">
+      {% if blog_article %}
+        <div class="card card-blog{% if blog_article[0].get_featured_image_url() %} card-image{% endif %}">
           <strong class="card-label">From the blogosphere</strong>
 
           <div class="card-content">
-            <h2 class="card-heading">
-              {{ blog_article[0].blog_title }}
-            </h2>
+            {% if blog_article[0].get_featured_image_url() %}
+              <img src="{{ blog_article[0].get_featured_image_url() }}" alt="" class="card-blog-image">
+            {% endif %}
 
-            {# TODO: get name of blog from blog_article? #}
-            <a href="{{ blog_article[0].link }}" class="card-cta">{{ blog_article[0].blog_name }}</a>
+            <div class="card-content-inner">
+              <h2 class="card-heading">
+                {{ blog_article[0].blog_title }}
+              </h2>
+
+              <a href="{{ blog_article[0].link }}" class="card-cta">{{ blog_article[0].blog_name }}</a>
+            </div>
           </div>
         </div>
+      {% endif %}
+
+      {% if browser_article %}
+        <div class="card card-blog{% if browser_article[0].get_featured_image_url() %} card-image{% endif %}">
+          <div class="card-content">
+            {% if browser_article[0].get_featured_image_url() %}
+              <img src="{{ browser_article[0].get_featured_image_url() }}" alt="" class="card-blog-image">
+            {% endif %}
+
+            <div class="card-content-inner">
+              <h2 class="card-heading">{{ browser_article[0].blog_title }}</h2>
+
+              <a href="{{ browser_article[0].link }}" class="card-cta">{{ browser_article[0].blog_name }}</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if privacy_article %}
+        <div class="card card-blog{% if privacy_article[0].get_featured_image_url() %} card-image{% endif %}">
+          <div class="card-content">
+          {% if privacy_article[0].get_featured_image_url() %}
+            <img src="{{ privacy_article[0].get_featured_image_url() }}" alt="" class="card-blog-image">
+          {% endif %}
+
+            <div class="card-content-inner">
+              <h2 class="card-heading">{{ privacy_article[0].blog_title }}</h2>
+
+              <a href="{{ privacy_article[0].link }}" class="card-cta">{{ privacy_article[0].blog_name }}</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
       </section>
     {% endif %}
+
       <section id="third-party-feed" class="content">
         <div class="card card-stacked">
           <div class="card-content">
             <blockquote class="quote">
-              No Network? No problem for Google Docs on Firefox.
+              Why I switched back to Firefox
             </blockquote>
 
-            <a href="" class="card-cta">CNET News</a>
+            <a rel="external" href="http://www.computerworld.com/article/3074093/enterprise-applications/why-i-switched-back-to-firefox.html" class="card-cta">Computerworld</a>
           </div>
         </div>
         <div class="card card-stacked">
           <div class="card-content">
             <blockquote class="quote">
-              Firefox Focus iPhone browser is built for privacy
+              Half the Web Is Now Encrypted. That Makes Everyone Safer.
             </blockquote>
 
-            <a href="" class="card-cta">The Wall Street Journal News</a>
+            <a rel="external" href="https://www.wired.com/2017/01/half-web-now-encrypted-makes-everyone-safer/" class="card-cta">Wired</a>
           </div>
         </div>
-      </section>
+        <div class="card card-stacked">
+          <div class="card-content">
+            <blockquote class="quote">
+              Your Internet Search History Will Soon Be Up for Sale &mdash; Here’s How You Can Protect Yourself
+            </blockquote>
+
+            <a rel="external" href="http://www.vogue.com/article/internet-privacy-fcc-laws-eliminated-protect-yourself" class="card-cta">Wired</a>
+          </div>
+        </div>
+      </section> {#--/#third-party-feed.content--#}
     </section>
 
     <hr class="content section-break" />
@@ -196,26 +245,54 @@
 
     <hr class="content section-break" />
 
-    <aside id="related" class="page-section">
+    <aside id="related-download" class="page-section">
       <div class="content">
-        <section class="related-content-item">
-          <div class="related-content-item-container">
-            <h2>{{ _('Get Firefox for desktop today') }}</h2>
-            <p>{{ _('Firefox is faster, more private, and always independent. Available on desktop and mobile.') }}</p>
-            {{ download_firefox(dom_id='features-footer-download-firefox') }}
+        <div class="card related-card">
+          <div class="card-content">
+            {{ high_res_img('firefox/hub/related-download.png', { 'width': '300', 'class': 'card-image' }) }}
+
+            <div class="card-content-inner">
+              {# HAHA. HAHA. HAHA. HAHA. #}
+              <div class="card-content-inner-inner">
+                <h2 class="card-heading">Start browsing on Firefox today</h2>
+                <p>Faster than ever, more secure & <em>always</em> independent.</p>
+              </div>
+
+              <div class="card-cta-wrapper">
+                {{ download_firefox(dom_id='features-footer-download-firefox') }}
+              </div>
+            </div>
           </div>
-        </section>
-        <section class="related-content-item">
-          <div class="related-content-item-container">
-            <h2>{{ _('Keep up with all things Firefox') }}</h2>
-            <p>Dr. Yap is dreamy. When he's looking at my molars, it's like he's looking into my soul.</p>
-            {{ email_newsletter_form(include_title=False, spinner_color='#000', button_class='button-hollow') }}
+        </div>
+      </div>
+    </aside>
+
+    <hr class="content section-break" />
+
+    <aside id="related-newsletter" class="page-section">
+      <div class="content">
+        <div class="card related-card">
+          <div class="card-content">
+            {{ high_res_img('firefox/hub/related-newsletter.png', { 'width': '300', 'class': 'card-image' }) }}
+
+            <div class="card-content-inner">
+              {# WE ARE IN THE UPSIDE DOWN. #}
+              <div class="card-content-inner-inner">
+                <h2 class="card-heading">Hungry for more?</h2>
+                <p>Get the latest and greatest from Firefox delivered straight to your inbox.</p>
+              </div>
+
+              <div class="card-cta-wrapper">
+                {{ email_newsletter_form(include_title=False, spinner_color='#000', button_class='button-hollow') }}
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
       </div>
     </aside> {#--/#related--#}
   </div> {#--/.hub-content--#}
 {% endblock %}
+
 
 {% block site_footer %}
   {% with footer_class='dark' %}

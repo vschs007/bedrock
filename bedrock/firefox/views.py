@@ -26,7 +26,7 @@ from lib import l10n_utils
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
-from bedrock.mozorg.models import BlogArticle
+from bedrock.wordpress.models import BlogPost
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
@@ -544,9 +544,28 @@ class FirefoxHubView(l10n_utils.LangFilesMixin, TemplateView):
         # en-* only for blog posts
         if locale.startswith('en-'):
             try:
-                # TODO: filter by tag 'home'
-                context['blog_article'] = list(BlogArticle.objects.filter(blog_name='Firefox')[:1])
+                fx_blog = BlogPost.objects.filter_by_blogs('firefox')
             except Exception:
-                context['blog_article'] = None
+                fx_blog = None
+
+            if fx_blog:
+                try:
+                    context['blog_article'] = fx_blog
+
+                    # TODO when tag is added:
+                    #context['blog_article'] = fx_blog.filter_by_tags('home')[:1]
+                except Exception:
+                    context['blog_article'] = None
+
+                try:
+                    context['browser_article'] = fx_blog.filter_by_tags('browser')[:1]
+                except Exception:
+                    context['browser_article'] = None
+
+                try:
+                    context['privacy_article'] = fx_blog.filter_by_tags('privacy')[:1]
+                except Exception:
+                    context['privacy_article'] = None
+
 
         return context
